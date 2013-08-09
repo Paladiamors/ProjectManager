@@ -1,50 +1,133 @@
 '''
-Created on Jul 6, 2013
+Created on Jul 11, 2013
 
 @author: justinyho
 '''
 
-import sqlite3
-from config import configDict
+from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship, backref
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
-def getConnection(testMode = False):
-    
-    if not testMode:
-        dbPath = configDict["dbPath"]
-    else:
-        dbPath = configDict["test_dbPath"]
+import datetime
 
-    conn = sqlite3.connect(dbPath, detect_types=sqlite3.PARSE_DECLTYPES)
-    
-    #creating model for the database here
-    
-    #Projects can have tasks and information associated to them
-    #not sure if they should be in the same table just yet, but let's keep them separate for now
-    
-    #project table: contains details about created projects
-    #id = id of the project
-    #projectName = name of the project
-    #projectDetails = details of the project
-    #creationDate = date of creation of the project
-    #completionDate = to be filled when the project has been completed
-    
-    conn.execute("""create table if not exists projects(
-    id integer primary key autoincrement,
-    projectName text,
-    projectDetails text,
-    creationDate timestamp,
-    completionDate timestamp
-    )""")
-    
-    
-    #the task table is used to store a variety of tasks associated to a project
-    conn.execute("""create table if not exists tasks(
-    id integer primary key autoincrement,
-    projectId integer,
-    taskName text,
-    taskDetails text,
-    creationDate timestamp,
-    startDate timestamp,
-    completionDate timestamp)""")
+Base = declarative_base()
 
-    return conn
+class Idea(Base):
+    
+    __tablename__ = 'Ideas'
+    
+    id = Column(Integer, primary_key=True)
+    ideaTitle = Column(String)
+    ideaDetails = Column(String)
+    creationDate = Column(DateTime)
+    completeDate = Column(DateTime)
+
+    def __init__(self, **kwargs):
+        """
+        Overloaded version to add a default creation date
+        """
+        
+        Base.__init__(self, **kwargs)
+        
+        if "creationDate" not in kwargs:
+            self.creationDate = datetime.datetime.today()
+        
+    def setComplete(self, date = None):
+        if not date:
+            date = datetime.datetime.today()
+            
+        self.completionDate = date
+
+class Project(Base):
+    
+    __tablename__ = 'Projects'
+    
+    id = Column(Integer, primary_key=True)
+    projectTitle = Column(String)
+    projectDetails = Column(String)
+    creationDate = Column(DateTime)
+    completeDate = Column(DateTime)
+    
+    tasks = relationship("Task", backref = "Projects")
+
+    def __init__(self, **kwargs):
+        """
+        Overloaded version to add a default creation date
+        """
+        
+        Base.__init__(self, **kwargs)
+        
+        if "creationDate" not in kwargs:
+            self.creationDate = datetime.datetime.today()
+        
+    def setComplete(self, date = None):
+        if not date:
+            date = datetime.datetime.today()
+            
+        self.completionDate = date
+        
+class Task(Base):
+    
+    __tablename__ = 'Tasks'
+    
+    id = Column(Integer, primary_key = True)
+    taskTitle = Column(String)
+    taskDetails = Column(String)
+    creationDate = Column(DateTime)
+    completeDate = Column(DateTime)
+    
+    projectId = Column(Integer, ForeignKey("Projects.id"))
+
+    def __init__(self, **kwargs):
+        """
+        Overloaded version to add a default creation date
+        """
+        
+        Base.__init__(self, **kwargs)
+        
+        if "creationDate" not in kwargs:
+            self.creationDate = datetime.datetime.today()
+
+    def setComplete(self, date = None):
+        if not date:
+            date = datetime.datetime.today()    
+            
+            
+def getSession(connString):
+    """
+    connString used to connect to a database
+    returns a Session factory to create sessions
+    
+    connString can be like: 'sqlite:///:memory:'
+    """
+    engine = create_engine(connString, echo=True)
+    Base.metadata.create_all(engine)
+    Session = sessionmaker(bind=engine)
+    
+    return Session
+
+
+if __name__ == "__main__":
+    
+    from config import configDict
+    Session = getSession(configDict["test"])
+    session = Session()
+    
+    p1 = Project(projectTitle = "project1", projectDetails = "some details")
+    p2 = Project(projectTitle = "project2", projectDetails = "some details")
+    
+    t1 = Task(taskTitle = "Task1", taskDetails = "task detail")
+    t2 = Task(taskTitle = "Task2", taskDetails = "task detail")
+    t3 = Task(taskTitle = "Task3", taskDetails = "task detail")
+    
+    p1.tasks = [t1,t2]
+    p2.tasks.append(t3)
+    
+    session.add(p1)
+    session.add(p2)
+    session.commit()
+    results = session.query(Task).filter(Task.projectId == 1).all()
+    print results
