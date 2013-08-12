@@ -4,7 +4,6 @@ Created on Aug 8, 2013
 @author: justin
 '''
 import wx
-import wxP
 import sys
 import traceback
 

@@ -25,6 +25,11 @@ class Idea(Base):
     creationDate = Column(DateTime)
     completeDate = Column(DateTime)
 
+    mapping = {"Title" : ideaTitle,
+               "Details" : ideaDetails,
+               "Creation Date": creationDate,
+               "Completion Date": completeDate}
+    
     def __init__(self, **kwargs):
         """
         Overloaded version to add a default creation date
@@ -41,6 +46,13 @@ class Idea(Base):
             
         self.completionDate = date
 
+    def getCols(self, colList):
+        """
+        colList = a list of columns to be selected out of the class
+        """
+        
+        return [self.mapping[colName] for colName in colList]
+    
 class Project(Base):
     
     __tablename__ = 'Projects'
@@ -49,10 +61,17 @@ class Project(Base):
     projectTitle = Column(String)
     projectDetails = Column(String)
     creationDate = Column(DateTime)
+    startDate = Column(DateTime)
     completeDate = Column(DateTime)
     
     tasks = relationship("Task", backref = "Projects")
 
+    mapping = {"Title" : projectTitle,
+               "Details" : projectDetails,
+               "Creation Date": creationDate,
+               "Start Date": startDate,
+               "Completion Date": completeDate}
+    
     def __init__(self, **kwargs):
         """
         Overloaded version to add a default creation date
@@ -77,10 +96,18 @@ class Task(Base):
     taskTitle = Column(String)
     taskDetails = Column(String)
     creationDate = Column(DateTime)
+    scheduleDate = Column(DateTime)
+    startDate = Column(DateTime)
     completeDate = Column(DateTime)
     
     projectId = Column(Integer, ForeignKey("Projects.id"))
 
+    mapping = {"Title" : taskTitle,
+               "Details" : taskDetails,
+               "Creation Date": creationDate,
+               "Start Date": startDate,
+               "Completion Date": completeDate}
+    
     def __init__(self, **kwargs):
         """
         Overloaded version to add a default creation date
