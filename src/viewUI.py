@@ -28,6 +28,7 @@ class MainFrame(MyFrame2):
             self.ideaList.InsertColumn(index, header)
         
         ideas = self.session.query(Idea).all()
+        
     def populateData(self):
         """
         populates data for the class
