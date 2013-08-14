@@ -42,7 +42,7 @@
             <property name="minimum_size"></property>
             <property name="name">MyFrame2</property>
             <property name="pos"></property>
-            <property name="size">897,609</property>
+            <property name="size">852,425</property>
             <property name="style">wxDEFAULT_FRAME_STYLE</property>
             <property name="subclass"></property>
             <property name="title"></property>
@@ -88,7 +88,7 @@
             <event name="OnUpdateUI"></event>
             <object class="wxBoxSizer" expanded="1">
                 <property name="minimum_size"></property>
-                <property name="name">bSizer17</property>
+                <property name="name">self.bSizer17</property>
                 <property name="orient">wxVERTICAL</property>
                 <property name="permission">none</property>
                 <object class="sizeritem" expanded="1">
@@ -171,7 +171,7 @@
                         <event name="OnUpdateUI"></event>
                         <object class="wxBoxSizer" expanded="1">
                             <property name="minimum_size"></property>
-                            <property name="name">bSizer18</property>
+                            <property name="name">self.bSizer18</property>
                             <property name="orient">wxVERTICAL</property>
                             <property name="permission">none</property>
                             <object class="sizeritem" expanded="1">
@@ -504,7 +504,7 @@
                                                                 <event name="OnUpdateUI"></event>
                                                                 <object class="wxBoxSizer" expanded="0">
                                                                     <property name="minimum_size"></property>
-                                                                    <property name="name">bSizer20</property>
+                                                                    <property name="name">self.bSizer20</property>
                                                                     <property name="orient">wxVERTICAL</property>
                                                                     <property name="permission">none</property>
                                                                     <object class="sizeritem" expanded="0">
@@ -961,7 +961,7 @@
                                                                                                 <event name="OnRightUp"></event>
                                                                                                 <event name="OnSetFocus"></event>
                                                                                                 <event name="OnSize"></event>
-                                                                                                <event name="OnText">onIdeaTitleType</event>
+                                                                                                <event name="OnText">onIdeaTitleUpdate</event>
                                                                                                 <event name="OnTextEnter"></event>
                                                                                                 <event name="OnTextMaxLen"></event>
                                                                                                 <event name="OnTextURL"></event>
@@ -1458,7 +1458,7 @@
                                                                                                 <property name="resize">Resizable</property>
                                                                                                 <property name="show">1</property>
                                                                                                 <property name="size"></property>
-                                                                                                <property name="style">wxDP_DEFAULT</property>
+                                                                                                <property name="style">wxDP_ALLOWNONE|wxDP_DEFAULT</property>
                                                                                                 <property name="subclass"></property>
                                                                                                 <property name="toolbar_pane">0</property>
                                                                                                 <property name="tooltip"></property>
@@ -1544,7 +1544,7 @@
                                                                                                 <property name="resize">Resizable</property>
                                                                                                 <property name="show">1</property>
                                                                                                 <property name="size"></property>
-                                                                                                <property name="style">wxDP_DEFAULT</property>
+                                                                                                <property name="style">wxDP_ALLOWNONE|wxDP_DEFAULT</property>
                                                                                                 <property name="subclass"></property>
                                                                                                 <property name="toolbar_pane">0</property>
                                                                                                 <property name="tooltip"></property>
@@ -2123,7 +2123,7 @@
                                             <event name="OnUpdateUI"></event>
                                             <object class="wxBoxSizer" expanded="1">
                                                 <property name="minimum_size"></property>
-                                                <property name="name">bSizer41</property>
+                                                <property name="name">self.bSizer41</property>
                                                 <property name="orient">wxVERTICAL</property>
                                                 <property name="permission">none</property>
                                                 <object class="sizeritem" expanded="1">
@@ -2333,7 +2333,7 @@
                                                                             <property name="minimize_button">0</property>
                                                                             <property name="minimum_size"></property>
                                                                             <property name="moveable">1</property>
-                                                                            <property name="name">tempTreeCtrl</property>
+                                                                            <property name="name">m_treeCtrl2</property>
                                                                             <property name="pane_border">1</property>
                                                                             <property name="pane_position"></property>
                                                                             <property name="pane_size"></property>
@@ -2476,7 +2476,7 @@
                                                                 <event name="OnUpdateUI"></event>
                                                                 <object class="wxBoxSizer" expanded="1">
                                                                     <property name="minimum_size"></property>
-                                                                    <property name="name">bSizer211</property>
+                                                                    <property name="name">self.bSizer211</property>
                                                                     <property name="orient">wxVERTICAL</property>
                                                                     <property name="permission">none</property>
                                                                     <object class="sizeritem" expanded="1">
@@ -2559,7 +2559,7 @@
                                                                             <event name="OnUpdateUI"></event>
                                                                             <object class="wxBoxSizer" expanded="1">
                                                                                 <property name="minimum_size"></property>
-                                                                                <property name="name">bSizer221</property>
+                                                                                <property name="name">self.bSizer221</property>
                                                                                 <property name="orient">wxVERTICAL</property>
                                                                                 <property name="permission">none</property>
                                                                                 <object class="sizeritem" expanded="0">

@@ -2,3 +2,5 @@
 *.pyc
 *.pyo
 src/data.db
+
+old
