@@ -23,6 +23,7 @@ class Idea(Base):
     ideaTitle = Column(String)
     ideaDetails = Column(String)
     creationDate = Column(DateTime)
+    startDate = Column(DateTime)
     completeDate = Column(DateTime)
 
     mapping = {"Title" : ideaTitle,
@@ -158,3 +159,9 @@ if __name__ == "__main__":
     session.commit()
     results = session.query(Task).filter(Task.projectId == 1).all()
     print results
+    
+    print
+    results = session.query(Task).join(Project).all()
+    print results
+
+    

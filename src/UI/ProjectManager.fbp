@@ -42,7 +42,7 @@
             <property name="minimum_size"></property>
             <property name="name">MyFrame2</property>
             <property name="pos"></property>
-            <property name="size">852,425</property>
+            <property name="size">929,485</property>
             <property name="style">wxDEFAULT_FRAME_STYLE</property>
             <property name="subclass"></property>
             <property name="title"></property>
@@ -60,7 +60,7 @@
             <event name="OnAuiPaneRestore"></event>
             <event name="OnAuiRender"></event>
             <event name="OnChar"></event>
-            <event name="OnClose"></event>
+            <event name="OnClose">SaveData</event>
             <event name="OnEnterWindow"></event>
             <event name="OnEraseBackground"></event>
             <event name="OnHibernate"></event>
@@ -1135,7 +1135,7 @@
                                                                                                 <event name="OnRightUp"></event>
                                                                                                 <event name="OnSetFocus"></event>
                                                                                                 <event name="OnSize"></event>
-                                                                                                <event name="OnText"></event>
+                                                                                                <event name="OnText">onIdeaDetailsUpdate</event>
                                                                                                 <event name="OnTextEnter"></event>
                                                                                                 <event name="OnTextMaxLen"></event>
                                                                                                 <event name="OnTextURL"></event>
@@ -1470,7 +1470,7 @@
                                                                                                 <property name="window_name"></property>
                                                                                                 <property name="window_style"></property>
                                                                                                 <event name="OnChar"></event>
-                                                                                                <event name="OnDateChanged"></event>
+                                                                                                <event name="OnDateChanged">onUpdateIdeaCreateDate</event>
                                                                                                 <event name="OnEnterWindow"></event>
                                                                                                 <event name="OnEraseBackground"></event>
                                                                                                 <event name="OnKeyDown"></event>
@@ -1556,7 +1556,7 @@
                                                                                                 <property name="window_name"></property>
                                                                                                 <property name="window_style"></property>
                                                                                                 <event name="OnChar"></event>
-                                                                                                <event name="OnDateChanged"></event>
+                                                                                                <event name="OnDateChanged">onUpdateIdeaStartDate</event>
                                                                                                 <event name="OnEnterWindow"></event>
                                                                                                 <event name="OnEraseBackground"></event>
                                                                                                 <event name="OnKeyDown"></event>
@@ -1642,7 +1642,7 @@
                                                                                                 <property name="window_name"></property>
                                                                                                 <property name="window_style"></property>
                                                                                                 <event name="OnChar"></event>
-                                                                                                <event name="OnDateChanged"></event>
+                                                                                                <event name="OnDateChanged">onUpdateIdeaCompleteDate</event>
                                                                                                 <event name="OnEnterWindow"></event>
                                                                                                 <event name="OnEraseBackground"></event>
                                                                                                 <event name="OnKeyDown"></event>

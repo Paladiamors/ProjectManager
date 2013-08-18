@@ -17,7 +17,7 @@ import wx.xrc
 class MyFrame2 ( wx.Frame ):
 	
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 852,425 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 929,485 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 		
 		self.SetSizeHintsSz( wx.DefaultSize, wx.DefaultSize )
 		
@@ -286,8 +286,13 @@ class MyFrame2 ( wx.Frame ):
 		self.Centre( wx.BOTH )
 		
 		# Connect Events
+		self.Bind( wx.EVT_CLOSE, self.SaveData )
 		self.ideaList.Bind( wx.EVT_LIST_ITEM_SELECTED, self.onSelectItem )
 		self.ideaTitleTextBox.Bind( wx.EVT_TEXT, self.onIdeaTitleUpdate )
+		self.ideaDetailsTextBox.Bind( wx.EVT_TEXT, self.onIdeaDetailsUpdate )
+		self.ideaCreateDate.Bind( wx.EVT_DATE_CHANGED, self.onUpdateIdeaCreateDate )
+		self.ideaStartDate.Bind( wx.EVT_DATE_CHANGED, self.onUpdateIdeaStartDate )
+		self.ideaCompleteDate.Bind( wx.EVT_DATE_CHANGED, self.onUpdateIdeaCompleteDate )
 		self.hideCompletedIdea_cb.Bind( wx.EVT_CHECKBOX, self.onHideCompleteIdea )
 		self.addIdeaButton.Bind( wx.EVT_BUTTON, self.onAddIdea )
 		self.saveIdeaButton.Bind( wx.EVT_BUTTON, self.onSaveIdea )
@@ -302,10 +307,25 @@ class MyFrame2 ( wx.Frame ):
 	
 	
 	# Virtual event handlers, overide them in your derived class
+	def SaveData( self, event ):
+		event.Skip()
+	
 	def onSelectItem( self, event ):
 		event.Skip()
 	
 	def onIdeaTitleUpdate( self, event ):
+		event.Skip()
+	
+	def onIdeaDetailsUpdate( self, event ):
+		event.Skip()
+	
+	def onUpdateIdeaCreateDate( self, event ):
+		event.Skip()
+	
+	def onUpdateIdeaStartDate( self, event ):
+		event.Skip()
+	
+	def onUpdateIdeaCompleteDate( self, event ):
 		event.Skip()
 	
 	def onHideCompleteIdea( self, event ):
